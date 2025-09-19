@@ -1,0 +1,525 @@
+/* Estilos Gerais & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif; /* Fonte mais suave para o corpo */
+    line-height: 1.6;
+    background-color: #f8f5f2; /* Um creme suave para o fundo geral */
+    color: #333;
+}
+
+/* Header & Navegação */
+.main-header {
+    background-color: #5A7D7C; /* Verde escuro elegante, remete a folhagem */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-elegant {
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px; /* Mais espaço nas laterais */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-branding-elegant {
+    font-family: 'Playfair Display', serif; /* Fonte elegante para a marca */
+    font-size: 2.5rem; /* Um pouco maior */
+    color: #FDFDFD; /* Branco suave */
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-branding-elegant:hover {
+    color: #D4EDDA; /* Um verde claro suave no hover */
+}
+
+.nav-menu-elegant {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px; /* Espaçamento entre os itens */
+}
+
+.nav-item-elegant {
+    list-style: none;
+}
+
+.nav-link-elegant {
+    font-size: 1.15rem;
+    color: #FDFDFD;
+    text-decoration: none;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link-elegant::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #D4EDDA; /* Destaque suave */
+    transition: width 0.3s ease-out;
+}
+
+.nav-link-elegant:hover::after {
+    width: 100%;
+}
+
+.nav-link-elegant:hover {
+    color: #D4EDDA;
+}
+
+/* Ícone Hamburger (Responsividade) */
+.hamburger-elegant {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar-elegant {
+    display: block;
+    width: 30px; /* Um pouco maior */
+    height: 3px;
+    margin: 6px auto; /* Mais espaçamento */
+    background-color: #FDFDFD;
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Animação do Hamburger */
+.hamburger-elegant.active .bar-elegant:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-elegant.active .bar-elegant:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-elegant.active .bar-elegant:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Seções Principais (Hero Sections) */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FDFDFD;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito parallax */
+    padding: 20px;
+    position: relative;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Overlay escuro para melhorar a leitura do texto */
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem; /* Títulos maiores e mais impactantes */
+    margin-bottom: 15px;
+    z-index: 1; /* Para ficar acima do overlay */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.section-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Imagens de Fundo para as Seções (Placeholder) */
+.buques {
+    background-image: url('https://via.placeholder.com/1920x1080/c5a3a3/ffffff?text=Buques+Flores+Vermelhas'); /* Tom pastel de rosa/vermelho */
+}
+
+.arranjos {
+    background-image: url('https://via.placeholder.com/1920x1080/a3c1ad/ffffff?text=Arranjos+Flores+Brancas'); /* Tom pastel de verde/azul */
+}
+
+.presentes {
+    background-image: url('https://via.placeholder.com/1920x1080/e6e6a8/ffffff?text=Presentes+Flores+Amarelas'); /* Tom pastel de amarelo */
+}
+
+.contato {
+    background-image: url('https://via.placeholder.com/1920x1080/b0c4de/ffffff?text=Contato+Jardim+Florido'); /* Tom pastel de azul */
+}
+
+
+/* Responsividade para telas menores */
+@media(max-width: 992px) {
+    .navbar-elegant {
+        padding: 0 20px;
+    }
+    .nav-branding-elegant {
+        font-size: 2rem;
+    }
+    .nav-menu-elegant {
+        gap: 25px;
+    }
+    .section-title {
+        font-size: 3rem;
+    }
+    .section-subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+@media(max-width: 768px) {
+    .hamburger-elegant {
+        display: block;
+    }
+
+    .nav-menu-elegant {
+        position: fixed;
+        left: -100%;
+        top: 80px; /* Ajuste para a altura do header */
+        gap: 0;
+        flex-direction: column;
+        background-color: #5A7D7C;
+        width: 100%;
+        text-align: center;
+        transition: 0.4s ease-in-out;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-item-elegant {
+        margin: 18px 0;
+    }
+
+    .nav-menu-elegant.active {
+        left: 0;
+    }
+
+    .nav-link-elegant {
+        font-size: 1.2rem;
+        padding: 10px 0;
+        display: block; /* Para ocupar a largura total do item no menu mobile */
+    }
+    .nav-link-elegant::after {
+        background-color: #FFC0CB; /* Destaque rosa no mobile */
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media(max-width: 480px) {
+    .nav-branding-elegant {
+        font-size: 1.8rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+}
+
+
+/* --- ADICIONE ESTE CÓDIGO NO FINAL DO SEU CSS --- */
+
+/* Estilos do Rodapé (Footer) */
+.site-footer {
+    background-color: #f7f5f5; /* Cor de fundo clara, como no exemplo */
+    color: #555;
+    padding: 50px 0;
+    font-size: 0.9rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+    gap: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px; /* Largura mínima para cada coluna */
+}
+
+.footer-column h3 {
+    font-family: 'Playfair Display', serif;
+    color: #8A2BE2; /* Roxo/Violeta como no exemplo */
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-column p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #8A2BE2;
+}
+
+/* Formulário de Newsletter */
+.newsletter-form {
+    display: flex;
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+.newsletter-form button {
+    background-color: #8A2BE2;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    font-weight: bold;
+}
+
+/* Informações de Contato */
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: #8A2BE2;
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+/* Seção Secundária (Pagamento, Segurança) */
+.footer-secondary {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section h4 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.payment-icons, .security-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.payment-icons i {
+    font-size: 2.2rem;
+    color: #777;
+}
+
+.security-icons img {
+    height: 40px;
+    filter: grayscale(1);
+    opacity: 0.7;
+}
+
+/* Rodapé Final (Copyright) */
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Responsividade do Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .contact-info li {
+        justify-content: center;
+    }
+    .newsletter-form {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+/* COLE ESTE NOVO BLOCO NO SEU style.css */
+
+/* --- Estilos da Seção de Produtos --- */
+.product-section {
+    padding: 60px 20px;
+    background-color: #fff; /* Fundo branco para a seção de produtos */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-heading {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.heading-separator {
+    width: 100px;
+    margin: 0 auto 40px auto;
+    border: 0;
+    height: 2px;
+    background-color: #8A2BE2; /* Roxo para combinar com o rodapé */
+}
+
+.product-grid {
+    display: grid;
+    /* Cria colunas responsivas: tenta encaixar o máximo de colunas de 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; /* Espaçamento entre os cards */
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que a imagem não saia do card */
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* Efeito de levantar o card */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px; /* Altura fixa para as imagens */
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 15px;
+    min-height: 44px; /* Garante que os títulos tenham a mesma altura */
+}
+
+.pricing {
+    margin-bottom: 15px;
+}
+
+.pricing .old-price {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: line-through;
+    display: block;
+}
+
+.pricing .new-price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
+    display: block;
+}
+
+.buy-button {
+    display: inline-block;
+    background-color: #8A2BE2;
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa toda a largura do padding */
+}
+
+.buy-button i {
+    margin-left: 8px;
+    font-size: 0.8em;
+}
+
+.buy-button:hover {
+    background-color: #7324bb; /* Cor mais escura no hover */
+}
+
+.discount-tag {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: #f2e6ff; /* Fundo lavanda claro */
+    color: #8A2BE2;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
