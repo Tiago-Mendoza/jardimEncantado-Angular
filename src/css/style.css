@@ -450,6 +450,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* para posicionar o selo de mais vendidos */
 }
 
 .product-card:hover {
@@ -522,4 +523,20 @@ body {
     font-size: 0.8rem;
     font-weight: bold;
     border-radius: 5px;
+}
+
+/* Selo de Mais Vendidos */
+.badge-bestseller {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: #ff9f43; /* laranja suave */
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    text-transform: uppercase;
+    letter-spacing: .5px;
 }
