@@ -87,6 +87,7 @@ function initCatalogs() {
 		'Caramelo & Creme',
 		'Noite Estrelada',
 		'Clássico Elegante'
+		
 	];
 	const buques = buildCatalog('Buquê', 'buques', 'buque', 20, buqueTitles);
     const maisVendidosBuques = buques.filter(p => p.bestSeller).slice(0, 6);
