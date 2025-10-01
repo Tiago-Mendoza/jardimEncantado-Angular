@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador - Jardim Encantado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{font-family:'Lato',sans-serif;background:#f7f7f7;margin:0;padding:0}
+        header{background:#4CAF50;color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+        h1{margin:0;font-size:24px}
+        .logout-btn{background:#fff;color:#4CAF50;border:none;padding:8px 14px;border-radius:4px;cursor:pointer;font-weight:700}
+        main{padding:30px;max-width:1100px;margin:auto}
+        .section{background:#fff;padding:24px;border-radius:8px;margin-bottom:40px;box-shadow:0 1px 6px rgba(0,0,0,.08)}
+        .section h2{margin-top:0}
+        .product-list{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px}
+        .product-item{border:1px solid #ddd;border-radius:6px;padding:10px;max-width:200px;position:relative;background:#fafafa}
+        .product-item img{width:100%;height:auto;border-radius:4px}
+        .product-item button{position:absolute;top:6px;right:6px;background:#d93025;border:none;border-radius:50%;width:26px;height:26px;color:#fff;cursor:pointer;font-weight:700}
+        form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px;align-items:end}
+        form label{display:block;margin-bottom:6px;font-weight:700}
+        form input{padding:8px;border:1px solid #ccc;border-radius:4px;width:100%}
+        form button{grid-column:1/-1;padding:12px;background:#4CAF50;color:#fff;border:none;border-radius:4px;font-size:16px;cursor:pointer}
+        select{padding:8px;border:1px solid #ccc;border-radius:4px;width:100%}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Painel do Administrador</h1>
+        <button class="logout-btn" id="logout-btn">Sair</button>
+    </header>
+    <main>
+        <div class="section">
+            <h2>Adicionar Produto</h2>
+            <form id="add-form">
+                <div>
+                    <label for="category">Categoria</label>
+                    <select id="category" required>
+                        <option value="buques">Buquês</option>
+                        <option value="arranjos">Arranjos</option>
+                        <option value="presentes">Presentes</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="title">Título</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div>
+                    <label for="image">URL da Imagem</label>
+                    <input type="text" id="image" placeholder="img/buques/buque-21.jpg" required>
+                </div>
+                <div>
+                    <label for="oldPrice">Preço Original</label>
+                    <input type="number" id="oldPrice" step="0.01" min="0" required>
+                </div>
+                <div>
+                    <label for="price">Preço Atual</label>
+                    <input type="number" id="price" step="0.01" min="0" required>
+                </div>
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+        <div class="section">
+            <h2>Produtos Cadastrados</h2>
+            <div id="product-lists"></div>
+        </div>
+    </main>
+<script>
+(function(){
+    if(localStorage.getItem('adminLogged')!=='yes'){
+        location.href='admin-login.html';
+        return;
+    }
+})();
+
+function loadCustom(){
+    try{return JSON.parse(localStorage.getItem('customProducts'))||{};}catch(_){return {};} }
+function saveCustom(obj){ localStorage.setItem('customProducts',JSON.stringify(obj)); }
+
+const productListsDiv=document.getElementById('product-lists');
+function renderLists(){
+    productListsDiv.innerHTML='';
+    const data=loadCustom();
+    ['buques','arranjos','presentes'].forEach(cat=>{
+        const list=data[cat]||[];
+        const section=document.createElement('div');
+        section.innerHTML=`<h3 style="margin-top:0">${cat.charAt(0).toUpperCase()+cat.slice(1)}</h3>`;
+        const grid=document.createElement('div');
+        grid.className='product-list';
+        list.filter(p=>!p.__deleted).forEach((p,idx)=>{
+            const item=document.createElement('div');
+            item.className='product-item';
+            item.innerHTML=`<button title='Remover'>&times;</button><img src='${p.image}' alt='${p.title}'><p><strong>${p.title}</strong></p><p>R$ ${p.price.toFixed(2)}</p>`;
+            item.querySelector('button').addEventListener('click',()=>{
+                if(confirm('Remover este produto?')){
+                    list[idx].__deleted=true;
+                    saveCustom(data);
+                    renderLists();
+                }
+            });
+            grid.appendChild(item);
+        });
+        section.appendChild(grid);
+        productListsDiv.appendChild(section);
+    });
+}
+renderLists();
+
+document.getElementById('add-form').addEventListener('submit',function(e){
+    e.preventDefault();
+    const cat=this.category.value;
+    const title=this.title.value.trim();
+    const image=this.image.value.trim();
+    const oldPrice=parseFloat(this.oldPrice.value);
+    const price=parseFloat(this.price.value);
+    const obj=loadCustom();
+    obj[cat]=obj[cat]||[];
+    obj[cat].push({title,image,oldPrice,price,bestSeller:false});
+    saveCustom(obj);
+    this.reset();
+    renderLists();
+});
+
+document.getElementById('logout-btn').addEventListener('click',()=>{
+    localStorage.removeItem('adminLogged');
+    location.href='index.html';
+});
+</script>
+</body>
+</html>

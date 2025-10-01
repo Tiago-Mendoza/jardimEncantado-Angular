@@ -90,9 +90,11 @@ function initCatalogs() {
 		
 	];
 	const buques = buildCatalog('Buquê', 'buques', 'buque', 20, buqueTitles);
-    const maisVendidosBuques = buques.filter(p => p.bestSeller).slice(0, 6);
+    const custom = loadCustomCatalogs();
+    const buquesMerged = mergeCatalog(buques, custom.buques);
+    const maisVendidosBuques = buquesMerged.filter(p => p.bestSeller).slice(0, 6);
     mountGrid('grid-mais-vendidos-buques', maisVendidosBuques);
-    mountGrid('grid-buques', buques);
+    mountGrid('grid-buques', buquesMerged);
 
     // Arranjos 
 	const arranjoTitles = [
@@ -119,9 +121,10 @@ function initCatalogs() {
           
 	];
 	const arranjos = buildCatalog('Arranjo', 'arranjos', 'arranjo', 20, arranjoTitles);
-    const maisVendidosArranjos = arranjos.filter(p => p.bestSeller).slice(0, 6);
+    const arranjosMerged = mergeCatalog(arranjos, custom.arranjos);
+    const maisVendidosArranjos = arranjosMerged.filter(p => p.bestSeller).slice(0, 6);
     mountGrid('grid-mais-vendidos-arranjos', maisVendidosArranjos);
-    mountGrid('grid-arranjos', arranjos);
+    mountGrid('grid-arranjos', arranjosMerged);
 
     // Presentes 
 	const presenteTitles = [
@@ -147,9 +150,26 @@ function initCatalogs() {
 		'Tudo de Bom'
 	];
 	const presentes = buildCatalog('Presente', 'presentes', 'presente', 20, presenteTitles);
-    const maisVendidosPresentes = presentes.filter(p => p.bestSeller).slice(0, 6);
+    const presentesMerged = mergeCatalog(presentes, custom.presentes);
+    const maisVendidosPresentes = presentesMerged.filter(p => p.bestSeller).slice(0, 6);
     mountGrid('grid-mais-vendidos-presentes', maisVendidosPresentes);
-    mountGrid('grid-presentes', presentes);
+    mountGrid('grid-presentes', presentesMerged);
+}
+
+// ===== Custom product storage helpers (shared with admin dashboard) =====
+function loadCustomCatalogs() {
+    try {
+        return JSON.parse(localStorage.getItem('customProducts')) || {};
+    } catch (_) {
+        return {};
+    }
+}
+
+function mergeCatalog(original, customList = []) {
+    if (!Array.isArray(customList)) return original;
+    // filter out items that were marked as removed (have a property __deleted)
+    const activeCustom = customList.filter(p => !p.__deleted);
+    return [...original, ...activeCustom];
 }
 
 document.addEventListener('DOMContentLoaded', initCatalogs);

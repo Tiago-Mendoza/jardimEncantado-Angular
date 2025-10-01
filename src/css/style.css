@@ -896,3 +896,6 @@ body {
 .product-card:nth-child(4) { animation-delay: 0.4s; }
 .product-card:nth-child(5) { animation-delay: 0.5s; }
 .product-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* ===== Admin pages overrides ===== */
+body:has(.login-box), body:has(header){font-family:'Lato',sans-serif;}
