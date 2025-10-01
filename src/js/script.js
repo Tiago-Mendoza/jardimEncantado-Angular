@@ -30,7 +30,7 @@ function createProductCard(product) {
                     ${hasDiscount ? `<span class="old-price">de ${formatCurrency(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${product.price ? `por ${formatCurrency(product.price)}` : formatCurrency(product.oldPrice || 0)}</span>
                 </div>
-                <a href="#" class="buy-button">Comprar <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="#" class="buy-button" data-product='${encodeURIComponent(JSON.stringify(product))}'>Comprar <i class="fa-solid fa-chevron-right"></i></a>
                 ${hasDiscount ? `<div class="discount-tag">${discountPercent}% DE DESCONTO</div>` : ''}
             </div>
         </div>
@@ -171,5 +171,28 @@ function mergeCatalog(original, customList = []) {
     const activeCustom = customList.filter(p => !p.__deleted);
     return [...original, ...activeCustom];
 }
+
+function loadCart(){
+    try{return JSON.parse(localStorage.getItem('cartItems'))||[];}catch(_){return [];} }
+function saveCart(arr){ localStorage.setItem('cartItems',JSON.stringify(arr)); }
+function updateCartCount(){ const countEl=document.getElementById('cart-count'); if(countEl){countEl.textContent=loadCart().length;}}
+
+document.addEventListener('click',function(e){
+    const btn=e.target.closest('.buy-button');
+    if(!btn) return;
+    e.preventDefault();
+    const data=btn.getAttribute('data-product');
+    if(!data) return;
+    const product=JSON.parse(decodeURIComponent(data));
+    const cart=loadCart();
+    cart.push(product);
+    saveCart(cart);
+    updateCartCount();
+    alert('Item adicionado ao carrinho!');
+});
+
+document.addEventListener('DOMContentLoaded',function(){
+    updateCartCount();
+});
 
 document.addEventListener('DOMContentLoaded', initCatalogs);

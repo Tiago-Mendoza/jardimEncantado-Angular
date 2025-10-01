@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login de Administrador - Jardim Encantado</title>
+    <title>Login - Jardim Encantado</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="login-box">
-        <h1>Área Administrativa</h1>
+        <h1>Login</h1>
         <div class="error-message" id="error-msg">Usuário ou senha inválidos.</div>
         <form id="login-form">
             <label for="username">Usuário</label>
@@ -32,11 +32,14 @@
 <script>
     document.getElementById('login-form').addEventListener('submit', function(e){
         e.preventDefault();
-        const user = document.getElementById('username').value.trim();
+        const user = document.getElementById('username').value.trim().toLowerCase();
         const pass = document.getElementById('password').value.trim();
-        if(user.toLowerCase()==='admin' && pass==='123456'){
+        if(user==='admin' && pass==='123456'){
             localStorage.setItem('adminLogged','yes');
             location.href='admin-dashboard.html';
+        }else if(user==='cliente' && pass==='123456'){
+            localStorage.setItem('clientLogged','yes');
+            location.href='index.html';
         }else{
             document.getElementById('error-msg').style.display='block';
         }
