@@ -11,7 +11,6 @@ document.querySelectorAll(".nav-link-elegant").forEach(n => n.addEventListener("
     navMenu.classList.remove("active");
 }));
 
-// --- Catálogos dinâmicos (20 produtos por categoria) ---
 
 function formatCurrency(value) {
     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -43,13 +42,13 @@ function mountGrid(gridId, products) {
     grid.innerHTML = products.map(createProductCard).join('');
 }
 
-// Cria um conjunto de 20 itens de placeholder para cada categoria (suporta nomes personalizados)
+
 function buildCatalog(baseName, folderName, filePrefix, total = 20, customTitles = []) {
     const items = [];
     for (let i = 1; i <= total; i++) {
         const oldPrice = 50 + i * 3;
-        // aplica desconto em alguns itens alternados
-        const discounted = i % 3 !== 0; // 2 de cada 3 com desconto
+       
+        const discounted = i % 3 !== 0; 
         const price = discounted ? +(oldPrice * (0.6 + (i % 5) * 0.05)).toFixed(2) : oldPrice;
         const padded = i.toString().padStart(2, '0');
 		const title = customTitles[i - 1] && customTitles[i - 1].trim() ? customTitles[i - 1].trim() : `${baseName} ${padded}`;
@@ -156,7 +155,7 @@ function initCatalogs() {
     mountGrid('grid-presentes', presentesMerged);
 }
 
-// ===== Custom product storage helpers (shared with admin dashboard) =====
+
 function loadCustomCatalogs() {
     try {
         return JSON.parse(localStorage.getItem('customProducts')) || {};
@@ -167,7 +166,7 @@ function loadCustomCatalogs() {
 
 function mergeCatalog(original, customList = []) {
     if (!Array.isArray(customList)) return original;
-    // filter out items that were marked as removed (have a property __deleted)
+    
     const activeCustom = customList.filter(p => !p.__deleted);
     return [...original, ...activeCustom];
 }
@@ -191,8 +190,23 @@ document.addEventListener('click',function(e){
     alert('Item adicionado ao carrinho!');
 });
 
-document.addEventListener('DOMContentLoaded',function(){
+// Destacar link ativo de acordo com a página
+function highlightActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link-elegant').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        const linkPage = href.split('/').pop().split('#')[0];
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Executa após o carregamento do DOM
+document.addEventListener('DOMContentLoaded', function(){
     updateCartCount();
+    highlightActiveNavLink();
 });
 
 document.addEventListener('DOMContentLoaded', initCatalogs);

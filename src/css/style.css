@@ -1,4 +1,4 @@
-/* Estilos Gerais & Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,20 +6,20 @@
 }
 
 :root {
-    /* Paleta de Cores Elegante */
-    --primary-sage: #8B9A8C;        /* Verde sage principal */
-    --primary-sage-dark: #6B7A6C;   /* Verde sage escuro */
-    --primary-sage-light: #A8B5A9;  /* Verde sage claro */
-    --accent-rose: #D4A574;          /* Rosa antigo/dourado */
-    --accent-rose-light: #E8C4A0;    /* Rosa antigo claro */
-    --accent-gold: #C9A96E;          /* Dourado suave */
-    --neutral-cream: #FAF8F5;        /* Creme elegante */
-    --neutral-warm: #F5F2EE;         /* Neutro quente */
-    --neutral-soft: #E8E4DF;         /* Neutro suave */
-    --text-primary: #2C3E2D;         /* Verde escuro para texto */
-    --text-secondary: #5A6B5B;       /* Verde médio para texto */
-    --text-light: #8A9B8B;           /* Verde claro para texto */
-    --white-soft: #FEFEFE;           /* Branco suave */
+    
+    --primary-sage: #8B9A8C;        
+    --primary-sage-dark: #6B7A6C;  
+    --primary-sage-light: #A8B5A9;  
+    --accent-rose: #D4A574;          
+    --accent-rose-light: #E8C4A0;    
+    --accent-gold: #C9A96E;          
+    --neutral-cream: #FAF8F5;       
+    --neutral-warm: #F5F2EE;         
+    --neutral-soft: #E8E4DF;         
+    --text-primary: #2C3E2D;         
+    --text-secondary: #5A6B5B;       
+    --text-light: #8A9B8B;           
+    --white-soft: #FEFEFE;          
     --shadow-soft: rgba(139, 154, 140, 0.15);
     --shadow-medium: rgba(139, 154, 140, 0.25);
 }
@@ -32,7 +32,7 @@ body {
     font-weight: 400;
 }
 
-/* Header & Navegação */
+
 .main-header {
     background: linear-gradient(135deg, var(--primary-sage) 0%, var(--primary-sage-dark) 100%);
     backdrop-filter: blur(10px);
@@ -104,6 +104,14 @@ body {
     border-radius: 2px;
 }
 
+/* Link ativo */
+.nav-link-elegant.active {
+    color: var(--accent-rose-light);
+}
+.nav-link-elegant.active::after {
+    width: 100%;
+}
+
 .nav-link-elegant:hover::after {
     width: 100%;
 }
@@ -113,7 +121,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Ícone Hamburger (Responsividade) */
+
 .hamburger-elegant {
     display: none;
     cursor: pointer;
@@ -136,7 +144,7 @@ body {
     border-radius: 3px;
 }
 
-/* Animação do Hamburger */
+
 .hamburger-elegant.active .bar-elegant:nth-child(2) {
     opacity: 0;
 }
@@ -149,7 +157,7 @@ body {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Seções Principais (Hero Sections) */
+
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -232,7 +240,7 @@ body {
     }
 }
 
-/* Imagens de Fundo para as Seções */
+
 .buques {
     background-image: 
         linear-gradient(135deg, rgba(212, 165, 116, 0.3) 0%, rgba(139, 154, 140, 0.4) 100%),
@@ -258,7 +266,7 @@ body {
 }
 
 
-/* Responsividade para telas menores */
+
 @media(max-width: 992px) {
     .navbar-elegant {
         padding: 0 30px;
@@ -353,9 +361,9 @@ body {
 }
 
 
-/* --- ADICIONE ESTE CÓDIGO NO FINAL DO SEU CSS --- */
 
-/* Estilos do Rodapé (Footer) */
+
+
 .site-footer {
     background: linear-gradient(135deg, var(--neutral-warm) 0%, var(--neutral-soft) 100%);
     color: var(--text-secondary);
@@ -443,7 +451,7 @@ body {
     padding-left: 8px;
 }
 
-/* Formulário de Newsletter */
+
 .newsletter-form {
     display: flex;
     margin-top: 15px;
@@ -494,7 +502,7 @@ body {
     box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
 }
 
-/* Informações de Contato */
+
 .contact-info li {
     display: flex;
     align-items: flex-start;
@@ -514,7 +522,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Seção Secundária (Pagamento, Segurança) */
+
 .footer-secondary {
     max-width: 1400px;
     margin: 50px auto 0;
@@ -568,7 +576,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Rodapé Final (Copyright) */
+
 .footer-bottom {
     text-align: center;
     padding: 25px 50px;
@@ -586,7 +594,7 @@ body {
     line-height: 1.6;
 }
 
-/* Responsividade do Footer */
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -624,9 +632,7 @@ body {
 
 
 
-/* COLE ESTE NOVO BLOCO NO SEU style.css */
 
-/* --- Estilos da Seção de Produtos --- */
 .product-section {
     padding: 80px 20px;
     background: linear-gradient(135deg, var(--white-soft) 0%, var(--neutral-cream) 100%);
@@ -803,7 +809,6 @@ body {
     box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
 }
 
-/* Selo de Mais Vendidos */
 .badge-bestseller {
     position: absolute;
     top: 15px;
@@ -873,7 +878,6 @@ body {
     }
 }
 
-/* Animações adicionais */
 @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -884,7 +888,6 @@ body {
     animation: pulse 2s infinite;
 }
 
-/* Efeito de loading suave */
 .product-card {
     opacity: 0;
     animation: fadeInUp 0.6s ease-out forwards;
@@ -897,5 +900,4 @@ body {
 .product-card:nth-child(5) { animation-delay: 0.5s; }
 .product-card:nth-child(6) { animation-delay: 0.6s; }
 
-/* ===== Admin pages overrides ===== */
 body:has(.login-box), body:has(header){font-family:'Lato',sans-serif;}
