@@ -1,0 +1,14 @@
+<div class="login-box">
+  <h1>Login</h1>
+  <div class="error-message" [style.display]="showError ? 'block' : 'none'">
+    Usuário ou senha inválidos.
+  </div>
+  <form id="login-form" (ngSubmit)="onSubmit()">
+    <label for="username">Usuário</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" placeholder="admin" required autocomplete="username">
+    <label for="password">Senha</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" placeholder="******" required autocomplete="current-password">
+    <button type="submit">Entrar</button>
+    <a href="#" class="forgot-password" (click)="onForgotPassword($event)">Esqueci senha</a>
+  </form>
+</div>

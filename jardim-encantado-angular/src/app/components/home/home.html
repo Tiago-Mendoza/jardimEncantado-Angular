@@ -1,0 +1,50 @@
+<main>
+  <section id="buques" class="hero-section buques">
+    <h1 class="section-title">Nossos Buquês Exclusivos</h1>
+    <p class="section-subtitle">A beleza em cada pétala.</p>
+  </section>
+</main>
+
+<section class="product-section">
+  <div class="container">
+    <h2 class="section-heading">Mais Vendidos</h2>
+    <hr class="heading-separator">
+    <div class="product-grid">
+      <div *ngFor="let product of bestSellersBuques" class="product-card">
+        <span *ngIf="product.bestSeller" class="badge-bestseller">Mais vendidos</span>
+        <img [src]="product.image" [alt]="product.title" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Imagem+indisponível'">
+        <div class="product-info">
+          <h3>{{ product.title }}</h3>
+          <div class="pricing">
+            <span *ngIf="hasDiscount(product)" class="old-price">de {{ formatCurrency(product.oldPrice) }}</span>
+            <span class="new-price">{{ product.price ? 'por ' + formatCurrency(product.price) : formatCurrency(product.oldPrice || 0) }}</span>
+          </div>
+          <a href="#" class="buy-button" (click)="addToCart(product); $event.preventDefault()">
+            Comprar <i class="fa-solid fa-chevron-right"></i>
+          </a>
+          <div *ngIf="hasDiscount(product)" class="discount-tag">{{ getDiscountPercent(product) }}% DE DESCONTO</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-heading" style="margin-top: 40px;">Todos os Buquês</h2>
+    <hr class="heading-separator">
+    <div class="product-grid">
+      <div *ngFor="let product of allBuques" class="product-card">
+        <span *ngIf="product.bestSeller" class="badge-bestseller">Mais vendidos</span>
+        <img [src]="product.image" [alt]="product.title" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=Imagem+indisponível'">
+        <div class="product-info">
+          <h3>{{ product.title }}</h3>
+          <div class="pricing">
+            <span *ngIf="hasDiscount(product)" class="old-price">de {{ formatCurrency(product.oldPrice) }}</span>
+            <span class="new-price">{{ product.price ? 'por ' + formatCurrency(product.price) : formatCurrency(product.oldPrice || 0) }}</span>
+          </div>
+          <a href="#" class="buy-button" (click)="addToCart(product); $event.preventDefault()">
+            Comprar <i class="fa-solid fa-chevron-right"></i>
+          </a>
+          <div *ngIf="hasDiscount(product)" class="discount-tag">{{ getDiscountPercent(product) }}% DE DESCONTO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

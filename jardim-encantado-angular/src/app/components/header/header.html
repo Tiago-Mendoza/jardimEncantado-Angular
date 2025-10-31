@@ -1,0 +1,22 @@
+<header class="main-header">
+  <nav class="navbar-elegant">
+    <a routerLink="/" class="nav-branding-elegant">Jardim Encantado</a>
+    <ul class="nav-menu-elegant" [class.active]="isMenuOpen">
+      <li class="nav-item-elegant"><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link-elegant" (click)="closeMenu()">Buquês</a></li>
+      <li class="nav-item-elegant"><a routerLink="/arranjos" routerLinkActive="active" class="nav-link-elegant" (click)="closeMenu()">Arranjos</a></li>
+      <li class="nav-item-elegant"><a routerLink="/presentes" routerLinkActive="active" class="nav-link-elegant" (click)="closeMenu()">Presentes</a></li>
+      <li class="nav-item-elegant"><a href="#contato-footer" class="nav-link-elegant" (click)="closeMenu()">Contato</a></li>
+      <li class="nav-item-elegant"><a routerLink="/admin-login" routerLinkActive="active" class="nav-link-elegant" (click)="closeMenu()">Login</a></li>
+      <li class="nav-item-elegant">
+        <a routerLink="/cart" routerLinkActive="active" class="nav-link-elegant" (click)="closeMenu()">
+          <i class="fa-solid fa-cart-shopping"></i> <span id="cart-count">{{ cartCount }}</span>
+        </a>
+      </li>
+    </ul>
+    <div class="hamburger-elegant" [class.active]="isMenuOpen" (click)="toggleMenu()">
+      <span class="bar-elegant"></span>
+      <span class="bar-elegant"></span>
+      <span class="bar-elegant"></span>
+    </div>
+  </nav>
+</header>
